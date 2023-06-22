@@ -5,16 +5,6 @@ RSpec.describe User, type: :model do
     expect(FactoryBot.build(:user)).to be_valid
   end
 
-  it "is valid with a first name, last name and email, and password" do
-    user = User.new(
-      first_name: "Aaron",
-      last_name:  "Sumner",
-      email:      "tester@example.com",
-      password:   "dottle-nouveau-pavilion-tights-furze",
-    )
-    expect(user).to be_valid
-  end
-
   it "is invalid without a first name" do
     user = FactoryBot.build(:user, first_name: nil)
     user.valid?
@@ -28,7 +18,7 @@ RSpec.describe User, type: :model do
   end
 
   it "is invalid without an email address" do
-    user = User.new(email: nil)
+    user = FactoryBot.build(:user, email: nil)
     user.valid?
     expect(user.errors[:email]).to include("can't be blank")
   end
