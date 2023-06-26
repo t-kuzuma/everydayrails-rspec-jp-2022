@@ -1,0 +1,11 @@
+<h1>
+  Completed Projects
+</h1>
+
+
+<% @projects.where(completed: true).each do |project| %>
+  <h2><%= link_to project.name, project %></h2>
+  <p>
+    <%= project.description %>
+  </p>
+<% end %>
