@@ -41,4 +41,15 @@ RSpec.describe "Projects", type: :system do
     expect(page).to have_content "Completed"
     expect(page).to_not have_button "Complete"
   end
+
+  scenario "User dashboard does not display completed projects" do
+    user = FactoryBot.create(:user)
+    project = FactoryBot.create(:project, owner: user, name: "Uncompleted Project", completed: false)
+    project = FactoryBot.create(:project, owner: user, name: "Completed Project", completed: true)
+    sign_in user
+
+    visit projects_path
+    expect(page).to have_content "Uncompleted Project"
+    expect(page).to_not have_content "Completed Project"
+  end
 end
