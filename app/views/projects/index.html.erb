@@ -12,7 +12,7 @@
 </h1>
 
 
-<% @projects.where(completed: false).each do |project| %>
+<% @projects.each do |project| %>
   <h2><%= link_to project.name, project %></h2>
   <p>
     <%= project.description %>

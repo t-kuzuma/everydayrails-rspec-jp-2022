@@ -4,7 +4,7 @@ class ProjectsController < ApplicationController
 
   # GET /projects or /projects.json
   def index
-    @projects = current_user.projects
+    @projects = current_user.projects.where(completed: false).order(:id)
   end
 
   # GET /projects/1 or /projects/1.json
@@ -68,7 +68,7 @@ class ProjectsController < ApplicationController
   end
 
   def completed
-    @projects = Project.where(completed: true)
+    @projects = current_user.projects.where(completed: true).order(:id)
   end
 
   private
