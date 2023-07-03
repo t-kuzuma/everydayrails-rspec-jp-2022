@@ -3,7 +3,7 @@ require 'rails_helper'
 RSpec.describe "Password Resets", type: :system do
   include ActiveJob::TestHelper
 
-  let(:user) { FactoryBot.create(:user) }
+  let!(:user) { FactoryBot.create(:user, email: 'alice@example.com') }
 
   scenario "user successfully resets password" do
     visit root_path
@@ -11,7 +11,7 @@ RSpec.describe "Password Resets", type: :system do
     click_link "Forgot your password?"
 
     perform_enqueued_jobs do
-      fill_in "Email", with: user.email
+      fill_in "Email", with: 'alice@example.com'
       click_button "Send me reset password instructions"
 
       expect(page).to \
