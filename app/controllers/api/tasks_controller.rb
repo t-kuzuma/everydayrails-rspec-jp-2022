@@ -5,7 +5,7 @@ module Api
 
     def index
       project = current_user.projects.find(params[:project_id])
-      @tasks = project.tasks
+      @tasks = project.tasks.order(:id)
       render json: @tasks
     end
 
