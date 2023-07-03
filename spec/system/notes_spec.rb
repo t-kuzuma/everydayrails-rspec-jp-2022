@@ -20,7 +20,6 @@ RSpec.describe "Notes", type: :system do
 
       expect(page).to have_content "Note was successfully created"
       expect(page).to have_content "Test Message"
-      expect(page).to have_content "Test Message"
     }.to change(project.notes, :count).by(1)
   end
 end
