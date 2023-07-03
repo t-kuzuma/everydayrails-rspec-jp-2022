@@ -66,7 +66,6 @@ RSpec.configure do |config|
   config.include Devise::Test::ControllerHelpers, type: :controller
   config.include RequestSpecHelper, type: :request
   config.include Devise::Test::IntegrationHelpers, type: :system
-  config.include ActiveSupport::Testing::TimeHelpers
 
   # Clean up file uploads when test suite is finished
   config.after(:suite) do
