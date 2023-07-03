@@ -14,8 +14,8 @@ RSpec.describe "Tasks API", type: :request do
     expect(response).to have_http_status(:success)
     json = JSON.parse(response.body)
     expect(json.length).to eq 3
-    expect(json[0]["id"]).to eq tasks[0]["id"]
-    expect(json[1]["id"]).to eq tasks[1]["id"]
-    expect(json[2]["id"]).to eq tasks[2]["id"]
+    expect(json[0]["id"]).to eq tasks[0].id
+    expect(json[1]["id"]).to eq tasks[1].id
+    expect(json[2]["id"]).to eq tasks[2].id
   end
 end
