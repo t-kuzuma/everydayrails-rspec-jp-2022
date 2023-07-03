@@ -4,7 +4,7 @@ class ProjectsController < ApplicationController
 
   # GET /projects or /projects.json
   def index
-    @projects = current_user.projects.where(completed: false).order(:id)
+    @projects = current_user.projects.where(completed: nil).order(:id)
   end
 
   # GET /projects/1 or /projects/1.json

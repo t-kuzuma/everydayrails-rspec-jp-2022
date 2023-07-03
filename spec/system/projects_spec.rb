@@ -44,7 +44,7 @@ RSpec.describe "Projects", type: :system do
 
   scenario "User can access completed projects from the dashboard, which are not displayed" do
     user = FactoryBot.create(:user)
-    project = FactoryBot.create(:project, owner: user, name: "Uncompleted Project", completed: false)
+    project = FactoryBot.create(:project, owner: user, name: "Uncompleted Project")
     project = FactoryBot.create(:project, owner: user, name: "It's a Completed Project", completed: true)
     sign_in user
 
