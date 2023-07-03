@@ -41,4 +41,18 @@ RSpec.describe "Projects", type: :system do
     expect(page).to have_content "Completed"
     expect(page).to_not have_button "Complete"
   end
+
+  scenario "User can access completed projects from the dashboard, which are not displayed" do
+    user = FactoryBot.create(:user)
+    project = FactoryBot.create(:project, owner: user, name: "Uncompleted Project")
+    project = FactoryBot.create(:project, owner: user, name: "It's a Completed Project", completed: true)
+    sign_in user
+
+    visit projects_path
+    expect(page).to have_content "Uncompleted Project"
+    expect(page).to_not have_content "It's a Completed Project"
+    click_link "Completed Projects"
+    expect(page).to have_content "It's a Completed Project"    
+    expect(page).to_not have_content "Uncompleted Project"
+  end
 end

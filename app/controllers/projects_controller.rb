@@ -1,10 +1,10 @@
 class ProjectsController < ApplicationController
   before_action :set_project, only: %i[ show edit update destroy complete ]
-  before_action :project_owner?, except: %i[ index new create ]
+  before_action :project_owner?, except: %i[ index new create completed]
 
   # GET /projects or /projects.json
   def index
-    @projects = current_user.projects
+    @projects = current_user.projects.where(completed: nil).order(:id)
   end
 
   # GET /projects/1 or /projects/1.json
@@ -65,6 +65,10 @@ class ProjectsController < ApplicationController
     else
       redirect_to @project, alert: "Unable to complete project."
     end
+  end
+
+  def completed
+    @projects = current_user.projects.where(completed: true).order(:id)
   end
 
   private

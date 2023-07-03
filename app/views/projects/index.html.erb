@@ -5,8 +5,11 @@
     <span class="bi bi-plus-lg" aria-hidden="true"></span>
     New Project
   <% end %>
+  <%= link_to completed_projects_path, class: "btn btn-primary" do %>
+    <span class="bi bi-check-lg" aria-hidden="true"></span>
+    Completed Projects
+  <% end %>
 </h1>
-
 
 <% @projects.each do |project| %>
   <h2><%= link_to project.name, project %></h2>
