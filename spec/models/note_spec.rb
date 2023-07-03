@@ -4,20 +4,7 @@ RSpec.describe Note, type: :model do
   let(:user) { FactoryBot.create(:user) }
   let(:project) { FactoryBot.create(:project, owner: user) }
 
-  it "is valid with a user, project, and message" do
-    note = Note.new(
-      message: "This is a sample note.",
-      user: user,
-      project: project,
-    )
-    expect(note).to be_valid
-  end
-
-  it "is invalid without a message" do
-    note = Note.new(message: nil)
-    note.valid?
-    expect(note.errors[:message]).to include("can't be blank")
-  end
+  it { is_expected.to validate_presence_of :message }
 
   it 'has one attached attachment' do
     note = FactoryBot.create(:note, :with_attachment)
