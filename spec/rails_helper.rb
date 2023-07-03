@@ -71,14 +71,6 @@ RSpec.configure do |config|
   config.after(:suite) do
     FileUtils.rm_rf(ActiveStorage::Blob.service.root)
   end
-
-  config.before(:suite) do
-    DatabaseRewinder.clean_all
-  end
-
-  config.after(:each) do
-    DatabaseRewinder.clean
-  end
 end
 
 Shoulda::Matchers.configure do |config|

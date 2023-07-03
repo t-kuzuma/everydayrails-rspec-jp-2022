@@ -76,7 +76,6 @@ group :test do
   gem 'shoulda-matchers' # add in chapter 9
   gem 'vcr' # add in chapter 10
   gem 'webmock' # add in chapter 10
-  gem 'database_rewinder'
 end
 
 gem 'devise'
