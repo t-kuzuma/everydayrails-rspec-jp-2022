@@ -8,17 +8,11 @@ RSpec.describe "Projects", type: :system do
     visit root_path
   end
 
-  def create_project(options)
+  def create_project(name:, description:)
     click_link "New Project"
-    fill_in "Name", with: options[:name]
-    fill_in "Description", with: options[:description]
+    fill_in "Name", with: name
+    fill_in "Description", with: description
     click_button "Create Project"
-  end
-
-  def edit_project(options)
-    click_link "Edit"
-    fill_in "Name", with: options[:name]
-    click_button "Update Project"
   end
 
   scenario "user creates a new project" do
@@ -34,7 +28,11 @@ RSpec.describe "Projects", type: :system do
 
   scenario "user edits a project" do
     create_project(name: 'RSpec Practice', description: 'fjord bootcamp')
-    edit_project(name: 'Minitest Practice')
+
+    click_link "Edit"
+    fill_in "Name", with: 'Minitest Practice'
+    click_button "Update Project"
+    
     expect(page).to have_content "Project was successfully updated"
     expect(page).to have_content "Minitest Practice"
   end
